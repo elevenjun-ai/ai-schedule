@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 3.1)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f8fafc;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+            body { background: white; color: black; }
+            .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none !important; }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-indigo-900 text-white shadow-lg no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-indigo-200 text-xs font-semibold tracking-wider uppercase mb-1">
+                        <span class="bg-indigo-800 px-2 py-0.5 rounded border border-indigo-700">2026학년도 2학기</span>
+                        <span>교육과정 연계 AI교육</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-8 h-8 text-indigo-400"></i>
+                        AI교육 수업 운영 달력 & 시간표 (ver 3.1)
+                    </h1>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                    <button onclick="window.print()" class="flex-1 sm:flex-none justify-center flex items-center gap-1.5 bg-indigo-700 hover:bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-all shadow-sm">
+                        <i data-lucide="printer" class="w-4 h-4"></i> 인쇄하기
+                    </button>
+                    <button onclick="exportToCSV()" class="flex-1 sm:flex-none justify-center flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-all shadow-sm">
+                        <i data-lucide="download" class="w-4 h-4"></i> CSV 다운로드
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex-1 w-full space-y-6">
+
+        <!-- 3 Core Criteria Compliance Banner -->
+        <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-indigo-900 rounded-2xl shadow-md p-4 text-white no-print border border-emerald-700/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="flex items-start gap-3">
+                    <div class="bg-emerald-500/20 p-2.5 rounded-xl border border-emerald-400/30 text-emerald-300 shrink-0">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-base font-bold text-white">AI 교육과정 운영 3대 필수 조건 검토 완료</h2>
+                            <span class="bg-emerald-500 text-slate-950 font-extrabold text-[11px] px-2 py-0.5 rounded-full">100% 충족</span>
+                        </div>
+                        <p class="text-xs text-emerald-100/80 mt-1">
+                            전학년 목표 시수 달성, 동일 교시 중복 배정 0건, 공휴일 및 수요일 규정 준수를 철저히 검증하였습니다.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-semibold">
+                    <div class="bg-white/10 px-3 py-2 rounded-lg border border-white/10 flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                        <span>① 전학년 필수 시수 100%</span>
+                    </div>
+                    <div class="bg-white/10 px-3 py-2 rounded-lg border border-white/10 flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                        <span>② 교시별 중복 배정 0건</span>
+                    </div>
+                    <div class="bg-white/10 px-3 py-2 rounded-lg border border-white/10 flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                        <span>③ 공휴일·수요일 규정 준수</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade Hours Summary Cards -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5 no-print">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-indigo-600 shrink-0"></i>
+                    학년별 및 학급별 총 수업차시 현황 (2학년 수정사항 반영 완료)
+                </h2>
+                <span class="text-xs text-slate-500 font-medium">2026. 08. 24. ~ 12. 31. 기준</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                <!-- 1학년 -->
+                <div class="bg-rose-100/80 p-3.5 rounded-xl border-2 border-rose-400">
+                    <div class="flex justify-between items-center text-xs font-bold text-rose-950 mb-1">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-600 inline-block"></span>1학년 (2개반)</span>
+                        <span class="text-rose-900 bg-rose-200 px-2 py-0.5 rounded border border-rose-300 font-extrabold">총 12차시</span>
+                    </div>
+                    <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
+                        <p>• 학급당 할당: <strong class="text-rose-950">6차시</strong> (1-1: 6, 1-2: 6)</p>
+                        <p class="text-slate-600 text-[10px]">• 10월 3주~12월 4주 순차 완수 진행</p>
+                    </div>
+                </div>
+
+                <!-- 2학년 (수정 사항 반영) -->
+                <div class="bg-amber-100/80 p-3.5 rounded-xl border-2 border-amber-400">
+                    <div class="flex justify-between items-center text-xs font-bold text-amber-950 mb-1">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>2학년 (2개반)</span>
+                        <span class="text-amber-900 bg-amber-200 px-2 py-0.5 rounded border border-amber-300 font-extrabold">총 12차시</span>
+                    </div>
+                    <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
+                        <p>• 학급당 할당: <strong class="text-amber-950">6차시</strong> (2-1: 6, 2-2: 6)</p>
+                        <p class="text-slate-600 text-[10px]">• 9월 1주~10월 2주 조정 배정 완수 완료</p>
+                    </div>
+                </div>
+
+                <!-- 3학년 -->
+                <div class="bg-emerald-100/80 p-3.5 rounded-xl border-2 border-emerald-400">
+                    <div class="flex justify-between items-center text-xs font-bold text-emerald-950 mb-1">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span>3학년 (2개반)</span>
+                        <span class="text-emerald-900 bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 font-extrabold">총 18차시</span>
+                    </div>
+                    <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
+                        <p>• 학급당 할당: <strong class="text-emerald-950">9차시</strong> (3-1: 9, 3-2: 9)</p>
+                        <p class="text-slate-600 text-[10px]">• 9/22 보완 배정 반영 (동일 주 완수)</p>
+                    </div>
+                </div>
+
+                <!-- 4학년 -->
+                <div class="bg-cyan-100/80 p-3.5 rounded-xl border-2 border-cyan-400">
+                    <div class="flex justify-between items-center text-xs font-bold text-cyan-950 mb-1">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-cyan-600 inline-block"></span>4학년 (3개반)</span>
+                        <span class="text-cyan-900 bg-cyan-200 px-2 py-0.5 rounded border border-cyan-300 font-extrabold">총 60차시</span>
+                    </div>
+                    <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
+                        <p>• 학급당 할당: <strong class="text-cyan-950">20차시</strong> (4-1: 20, 4-2: 20, 4-3: 20)</p>
+                        <p class="text-slate-600 text-[10px]">• 금2~4교시 & 11월/12월 블록 배정</p>
+                    </div>
+                </div>
+
+                <!-- 5학년 (보라색 유지) -->
+                <div class="bg-purple-100/80 p-3.5 rounded-xl border-2 border-purple-400">
+                    <div class="flex justify-between items-center text-xs font-bold text-purple-950 mb-1">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-purple-600 inline-block"></span>5학년 (3개반)</span>
+                        <span class="text-purple-900 bg-purple-200 px-2 py-0.5 rounded border border-purple-300 font-extrabold">총 96차시</span>
+                    </div>
+                    <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
+                        <p>• 학급당 할당: <strong class="text-purple-950">32차시</strong> (5-1: 32, 5-2: 32, 5-3: 32)</p>
+                        <p class="text-slate-600 text-[10px]">• 화1~2교시(5-1), 3~4교시(5-2) / 목3~4교시(5-3)</p>
+                    </div>
+                </div>
+
+                <!-- 6학년 (청록색 Teal 계열로 변경 - 5학년 보라색과 명확히 구분) -->
+                <div class="bg-teal-100/80 p-3.5 rounded-xl border-2 border-teal-400">
+                    <div class="flex justify-between items-center text-xs font-bold text-teal-950 mb-1">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-teal-600 inline-block"></span>6학년 (3개반)</span>
+                        <span class="text-teal-900 bg-teal-200 px-2 py-0.5 rounded border border-teal-300 font-extrabold">총 96차시</span>
+                    </div>
+                    <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
+                        <p>• 학급당 할당: <strong class="text-teal-950">32차시</strong> (정규 16차시 + 특강 16차시)</p>
+                        <p class="text-slate-600 text-[10px]">• 월1~3교시 정규강사 / 화 특강 강사</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex flex-col md:flex-row items-center justify-between gap-4 no-print">
+            <!-- Month Selector Buttons -->
+            <div class="flex items-center gap-1 overflow-x-auto w-full md:w-auto pb-1 md:pb-0" id="monthSelector">
+                <!-- Dynamically Generated Month Buttons -->
+            </div>
+
+            <!-- Grade Filter Options -->
+            <div class="flex items-center gap-2 shrink-0 w-full md:w-auto justify-end">
+                <span class="text-xs font-semibold text-slate-500">학년 필터:</span>
+                <select id="gradeFilter" onchange="filterSchedule()" class="bg-slate-50 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    <option value="ALL">전체 보기</option>
+                    <option value="1">1학년 만 보기</option>
+                    <option value="2">2학년 만 보기</option>
+                    <option value="3">3학년 만 보기</option>
+                    <option value="4">4학년 만 보기</option>
+                    <option value="5">5학년 만 보기</option>
+                    <option value="6">6학년 만 보기</option>
+                    <option value="VISITING">6학년 찾아오는 강사 특강</option>
+                    <option value="HOLIDAY">공휴일 / 휴무일</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Monthly Calendar View -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <!-- Calendar Header -->
+            <div class="bg-slate-900 text-white px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <button onclick="changeMonth(-1)" class="p-1.5 hover:bg-slate-800 rounded-lg transition-all text-slate-300 hover:text-white">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <h2 id="calendarMonthTitle" class="text-lg sm:text-xl font-bold tracking-tight text-white">2026년 8월</h2>
+                    <button onclick="changeMonth(1)" class="p-1.5 hover:bg-slate-800 rounded-lg transition-all text-slate-300 hover:text-white">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs flex-wrap justify-center font-bold">
+                    <span class="inline-flex items-center gap-1.5 bg-rose-950 px-2 py-0.5 rounded text-rose-300 border border-rose-700"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>1학년</span>
+                    <span class="inline-flex items-center gap-1.5 bg-amber-950 px-2 py-0.5 rounded text-amber-300 border border-amber-700"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>2학년</span>
+                    <span class="inline-flex items-center gap-1.5 bg-emerald-950 px-2 py-0.5 rounded text-emerald-300 border border-emerald-700"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>3학년</span>
+                    <span class="inline-flex items-center gap-1.5 bg-cyan-950 px-2 py-0.5 rounded text-cyan-300 border border-cyan-700"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>4학년</span>
+                    <span class="inline-flex items-center gap-1.5 bg-purple-950 px-2 py-0.5 rounded text-purple-300 border border-purple-700"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>5학년</span>
+                    <!-- 6학년 색상 Teal 구분 적용 -->
+                    <span class="inline-flex items-center gap-1.5 bg-teal-950 px-2 py-0.5 rounded text-teal-300 border border-teal-700"><span class="w-2.5 h-2.5 rounded-full bg-teal-400"></span>6학년 (청록)</span>
+                    <span class="inline-flex items-center gap-1.5 bg-red-950 px-2 py-0.5 rounded text-red-300 border border-red-700"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>특강/공휴일</span>
+                </div>
+            </div>
+
+            <!-- Calendar Grid Container -->
+            <div class="p-3 sm:p-6 overflow-x-auto">
+                <div class="min-w-[720px] sm:min-w-0">
+                    <!-- Day of Week Headers -->
+                    <div class="grid grid-cols-7 text-center font-semibold text-xs text-slate-400 mb-2 py-2 border-b border-slate-100">
+                        <span class="text-rose-500">일</span>
+                        <span>월</span>
+                        <span>화</span>
+                        <span class="text-indigo-600">수 (자율/휴무)</span>
+                        <span>목</span>
+                        <span>금</span>
+                        <span class="text-blue-500">토</span>
+                    </div>
+
+                    <!-- Calendar Days Container -->
+                    <div id="calendarGrid" class="grid grid-cols-7 gap-1.5 sm:gap-2">
+                        <!-- Dynamically Rendered Calendar Cells -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Timetable Reference Section -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="clock" class="w-5 h-5 text-indigo-600"></i>
+                    기본 시간표 (학년별 색상 구분 반영)
+                </h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[550px] text-xs text-center border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                            <th class="p-3">교시 / 시간</th>
+                            <th class="p-3">월요일</th>
+                            <th class="p-3">화요일</th>
+                            <th class="p-3 bg-indigo-50 text-indigo-800">수요일</th>
+                            <th class="p-3">목요일</th>
+                            <th class="p-3">금요일</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-800">
+                        <tr>
+                            <td class="p-3 font-semibold bg-slate-50 text-slate-600">1교시 (09:00~09:40)</td>
+                            <td class="p-3 bg-teal-100 text-teal-950 font-bold border-2 border-teal-300">6학년 1반</td>
+                            <td class="p-3 bg-purple-100 text-purple-950 font-bold border-2 border-purple-300">5학년 1반 (1/2)</td>
+                            <td class="p-3 bg-indigo-50/50 text-slate-400 italic" rowspan="5">강사 수업 없음<br>(자체 수업 활용)</td>
+                            <td class="p-3 bg-amber-100 text-amber-950 font-bold border-2 border-amber-300">2-1반 / 1-1반 (선행/자율)</td>
+                            <td class="p-3 bg-amber-100 text-amber-950 font-bold border-2 border-amber-300">2-2반 / 1-2반 (선행/자율)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold bg-slate-50 text-slate-600">2교시 (09:50~10:30)</td>
+                            <td class="p-3 bg-teal-100 text-teal-950 font-bold border-2 border-teal-300">6학년 2반</td>
+                            <td class="p-3 bg-purple-100 text-purple-950 font-bold border-2 border-purple-300">5학년 1반 (2/2)</td>
+                            <td class="p-3 bg-emerald-100 text-emerald-950 font-bold border-2 border-emerald-300">3학년 1반</td>
+                            <td class="p-3 bg-cyan-100 text-cyan-950 font-bold border-2 border-cyan-300">4학년 1반</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold bg-slate-50 text-slate-600">3교시 (10:40~11:20)</td>
+                            <td class="p-3 bg-teal-100 text-teal-950 font-bold border-2 border-teal-300">6학년 3반</td>
+                            <td class="p-3 bg-purple-100 text-purple-950 font-bold border-2 border-purple-300">5학년 2반 (1/2)</td>
+                            <td class="p-3 bg-purple-100 text-purple-950 font-bold border-2 border-purple-300">5학년 3반 (1/2)</td>
+                            <td class="p-3 bg-cyan-100 text-cyan-950 font-bold border-2 border-cyan-300">4학년 2반</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold bg-slate-50 text-slate-600">4교시 (11:30~12:10)</td>
+                            <td class="p-3 bg-emerald-100 text-emerald-950 font-bold border-2 border-emerald-300">3학년 2반</td>
+                            <td class="p-3 bg-purple-100 text-purple-950 font-bold border-2 border-purple-300">5학년 2반 (2/2)</td>
+                            <td class="p-3 bg-purple-100 text-purple-950 font-bold border-2 border-purple-300">5학년 3반 (2/2)</td>
+                            <td class="p-3 bg-cyan-100 text-cyan-950 font-bold border-2 border-cyan-300">4학년 3반</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold bg-slate-50 text-slate-600">5교시 (12:20~13:00)</td>
+                            <td class="p-3 bg-slate-50 text-slate-400 font-normal">-</td>
+                            <td class="p-3 bg-slate-50 text-slate-400 font-normal">-</td>
+                            <td class="p-3 bg-slate-50 text-slate-400 font-normal">-</td>
+                            <td class="p-3 bg-slate-50 text-slate-400 font-normal">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Detail Day Modal -->
+    <div id="dayModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden no-print">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-100">
+            <div class="bg-slate-900 text-white p-5 flex justify-between items-center">
+                <div>
+                    <span id="modalWeekday" class="text-xs font-semibold text-indigo-300 uppercase">월요일</span>
+                    <h3 id="modalDateTitle" class="text-xl font-bold">2026년 8월 24일</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-all">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="modalBody" class="p-6 space-y-4">
+                <!-- Dynamically inserted period list -->
+            </div>
+            <div class="bg-slate-50 px-6 py-3 border-t border-slate-100 text-right">
+                <button onclick="closeModal()" class="bg-slate-800 text-white text-xs font-medium px-4 py-2 rounded-lg hover:bg-slate-700 transition-all">
+                    닫기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto py-6 no-print">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 3.1 - 2학년 수정 및 6학년 청록 테범 적용)</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Application Engine -->
+    <script>
+        // Korean Holidays
+        const HOLIDAYS = {
+            "2026-09-24": "추석 연휴",
+            "2026-09-25": "추석",
+            "2026-10-05": "개천절 대체공휴일",
+            "2026-10-09": "한글날",
+            "2026-12-25": "성탄절"
+        };
+
+        // 6th Grade Visiting Instructor Special Tuesdays
+        const VISITING_TUESDAYS = ["2026-09-22", "2026-09-29", "2026-10-06", "2026-10-13"];
+
+        // Current view state
+        let currentYear = 2026;
+        let currentMonth = 8;
+        let currentFilter = 'ALL';
+
+        // Schedule Database Container
+        let scheduleDB = [];
+
+        function generateScheduleData() {
+            scheduleDB = [];
+
+            const startDate = new Date(2026, 7, 24); // Aug 24, 2026
+            const endDate = new Date(2026, 11, 31);   // Dec 31, 2026
+
+            let rem = {
+                '1-1': 6, '1-2': 6,
+                '2-1': 6, '2-2': 6,
+                '3-1': 9, '3-2': 9,
+                '4-1': 20, '4-2': 20, '4-3': 20,
+                '5-1': 32, '5-2': 32, '5-3': 32,
+                '6-1': 16, '6-2': 16, '6-3': 16
+            };
+
+            const NOV_BLOCK_THUS = ["2026-11-05", "2026-11-12", "2026-11-19", "2026-11-26", "2026-12-03"];
+            const NOV_BLOCK_FRIS = ["2026-11-06", "2026-11-13", "2026-11-20", "2026-12-04"];
+
+            let curr = new Date(startDate);
+
+            while (curr <= endDate) {
+                let dtStr = formatDate(curr);
+                let wd = curr.getDay(); // 0:Sun, 1:Mon, ..., 6:Sat
+
+                if (wd !== 0 && wd !== 6) {
+                    let wdKr = ['일', '월', '화', '수', '목', '금', '토'][wd];
+                    let p1 = "", p2 = "", p3 = "", p4 = "", p5 = "";
+                    let notes = [];
+                    let isHoliday = !!HOLIDAYS[dtStr];
+
+                    if (isHoliday) {
+                        notes.push(`공휴일 (${HOLIDAYS[dtStr]})`);
+                    } else if (wd === 3) {
+                        notes.push("수요일 (강사 수업 없음)");
+                    } else {
+                        // Monday
+                        if (wd === 1) {
+                            if (dtStr === "2026-09-07") {
+                                if (rem['5-1'] > 0) { p1 = "5-1"; rem['5-1'] -= 1; }
+                                if (rem['5-1'] > 0) { p2 = "5-1"; rem['5-1'] -= 1; }
+                                if (rem['5-2'] > 0) { p3 = "5-2"; rem['5-2'] -= 1; }
+                                if (rem['5-2'] > 0) { p4 = "5-2"; rem['5-2'] -= 1; }
+                                notes.push("9/8(화) 5학년 수업 이월 배정 (3-2반 수업 9/10 목 1교시 이동)");
+                            } else if (dtStr === "2026-10-12") {
+                                if (rem['2-1'] > 0) { p1 = "2-1"; rem['2-1'] -= 1; }
+                                if (rem['2-2'] > 0) { p2 = "2-2"; rem['2-2'] -= 1; }
+                                if (rem['1-2'] > 0) { p3 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['3-2'] > 0) { p4 = "3-2"; rem['3-2'] -= 1; }
+                                notes.push("2학년 10/12(월) 보완 배정 완수");
+                            } else if (dtStr === "2026-12-07") {
+                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
+                                if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
+                                if (rem['1-1'] > 0) { p4 = "1-1"; rem['1-1'] -= 1; }
+                                notes.push("9/8(화) 1-1반 수업 12/7(월) 4교시 이동 배정 완료");
+                            } else if (dtStr === "2026-12-14") {
+                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-1'] > 0) { p2 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-2'] > 0) { p3 = "6-2"; rem['6-2'] -= 1; }
+                                if (rem['6-2'] > 0) { p4 = "6-2"; rem['6-2'] -= 1; }
+                                notes.push("12/14(월) 6-1반(1~2교시), 6-2반(3~4교시) 블록 수업 배정");
+                            } else if (dtStr === "2026-12-28") {
+                                notes.push("12/28(월) 4학년 수업 12/29(화)로 이동 배정");
+                            } else if (dtStr === "2026-09-21") {
+                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
+                                if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
+                                notes.push("3-2반 수업 9/22(화) 이동 배정 완료");
+                            } else if (dtStr === "2026-11-23") {
+                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
+                                if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
+                                if (rem['1-1'] > 0) { p4 = "1-1"; rem['1-1'] -= 1; }
+                            } else {
+                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
+                                if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
+                                if (rem['3-2'] > 0) { p4 = "3-2"; rem['3-2'] -= 1; }
+                            }
+                        } 
+                        // Tuesday
+                        else if (wd === 2) {
+                            if (VISITING_TUESDAYS.includes(dtStr)) {
+                                notes.push("6학년 찾아오는 AI 강사 특강");
+                            }
+                            
+                            if (dtStr === "2026-09-08") {
+                                if (rem['2-1'] > 0) { p3 = "2-1"; rem['2-1'] -= 1; }
+                                if (rem['2-2'] > 0) { p4 = "2-2"; rem['2-2'] -= 1; }
+                                notes.push("9/8(화) 2학년 보완 수업 반영");
+                            } else if (dtStr === "2026-09-15") {
+                                if (rem['2-1'] > 0) { p1 = "2-1"; rem['2-1'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("9/18(금) 4학년 수업 9/15(화)로 조정 배정 / 2-1반 1교시 배정");
+                            } else if (dtStr === "2026-09-22") {
+                                if (rem['2-1'] > 0) { p1 = "2-1"; rem['2-1'] -= 1; }
+                                if (rem['2-2'] > 0) { p2 = "2-2"; rem['2-2'] -= 1; }
+                                if (rem['3-1'] > 0) { p3 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['3-2'] > 0) { p4 = "3-2"; rem['3-2'] -= 1; }
+                                notes.push("2학년(1~2교시) 및 3학년(3~4교시) 보완 배정 완료");
+                            } else if (dtStr === "2026-12-22") {
+                                if (rem['1-1'] > 0) { p1 = "1-1"; rem['1-1'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("12/22(화) 4학년 2~4교시 추가 배정 / 1-1반 1교시 배정");
+                            } else if (dtStr === "2026-12-29") {
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("12/28(월) 4학년 수업 12/29(화) 이동 배정 완료");
+                            } else {
+                                if (rem['5-1'] > 0) { p1 = "5-1"; rem['5-1'] -= 1; }
+                                if (rem['5-1'] > 0) { p2 = "5-1"; rem['5-1'] -= 1; }
+                                if (rem['5-2'] > 0) { p3 = "5-2"; rem['5-2'] -= 1; }
+                                if (rem['5-2'] > 0) { p4 = "5-2"; rem['5-2'] -= 1; }
+                            }
+                        } 
+                        // Thursday
+                        else if (wd === 4) {
+                            if (dtStr === "2026-12-10") {
+                                if (rem['1-1'] > 0) { p1 = "1-1"; rem['1-1'] -= 1; }
+                                if (rem['1-2'] > 0) { p2 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("12/10(목) 1교시 1-1반, 2교시 1-2반 배정 반영 완료");
+                            } else if (NOV_BLOCK_THUS.includes(dtStr)) {
+                                if (rem['4-1'] > 0) { p1 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("4-1반 목요일 1~2교시 연차시 배정 / 5-3반 3~4교시 배정");
+                            } else if (dtStr === "2026-09-03") {
+                                if (rem['2-1'] > 0) { p1 = "2-1"; rem['2-1'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            } else if (dtStr === "2026-09-10") {
+                                if (rem['3-2'] > 0) { p1 = "3-2"; rem['3-2'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("9/7(월) 3-2반 수업 9/10(목) 1교시로 이동 배정");
+                            } else if (dtStr === "2026-09-17") {
+                                if (rem['2-2'] > 0) { p1 = "2-2"; rem['2-2'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            } else if (dtStr === "2026-10-01") {
+                                if (rem['2-1'] > 0) { p1 = "2-1"; rem['2-1'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            } else if (dtStr === "2026-10-08") {
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("3-1반 수업 9/22(화) 이동 완료");
+                            } else if (dtStr === "2026-10-15") {
+                                if (rem['1-1'] > 0) { p1 = "1-1"; rem['1-1'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            } else if (dtStr === "2026-10-22") {
+                                if (rem['1-1'] > 0) { p1 = "1-1"; rem['1-1'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            } else if (dtStr === "2026-10-29") {
+                                if (rem['1-1'] > 0) { p1 = "1-1"; rem['1-1'] -= 1; }
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            } else if (dtStr === "2026-12-17") {
+                                if (rem['6-3'] > 0) { p1 = "6-3"; rem['6-3'] -= 1; }
+                                if (rem['6-3'] > 0) { p2 = "6-3"; rem['6-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("12/17(목) 6-3반(1~2교시 블록) / 5-3반(3~4교시) 배정");
+                            } else if (dtStr === "2026-12-24") {
+                                if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            } else {
+                                if (rem['3-1'] > 0) { p2 = "3-1"; rem['3-1'] -= 1; }
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                            }
+                        } 
+                        // Friday
+                        else if (wd === 5) {
+                            if (dtStr === "2026-12-11") {
+                                if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("12/11(금) 1교시 1-2반 배정 반영 완료");
+                            } else if (dtStr === "2026-10-16") {
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("10/16(금) 2학년 완료 및 1-2반 이동 배정 완료");
+                            } else if (NOV_BLOCK_FRIS.includes(dtStr)) {
+                                if (rem['4-2'] > 0) { p1 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-2'] > 0) { p2 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p3 = "4-3"; rem['4-3'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("4-2반 금요일 1~2교시 연차시 / 4-3반 금요일 3~4교시 연차시 배정");
+                            } else if (dtStr === "2026-09-04") {
+                                if (rem['2-2'] > 0) { p1 = "2-2"; rem['2-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            } else if (dtStr === "2026-09-18") {
+                                if (rem['5-1'] > 0) { p1 = "5-1"; rem['5-1'] -= 1; }
+                                if (rem['5-1'] > 0) { p2 = "5-1"; rem['5-1'] -= 1; }
+                                if (rem['5-2'] > 0) { p3 = "5-2"; rem['5-2'] -= 1; }
+                                if (rem['5-2'] > 0) { p4 = "5-2"; rem['5-2'] -= 1; }
+                                notes.push("9/15(화) 5학년 수업 9/18(금)로 이동 배정 완료");
+                            } else if (dtStr === "2026-10-02") {
+                                if (rem['2-2'] > 0) { p1 = "2-2"; rem['2-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            } else if (dtStr === "2026-10-23") {
+                                if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            } else if (dtStr === "2026-10-30") {
+                                if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            } else if (dtStr === "2026-11-27") {
+                                if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            } else {
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                            }
+                        }
+                    }
+
+                    scheduleDB.push({
+                        date: dtStr,
+                        year: curr.getFullYear(),
+                        month: curr.getMonth() + 1,
+                        day: curr.getDate(),
+                        weekday: wdKr,
+                        weekdayNum: wd,
+                        p1, p2, p3, p4, p5,
+                        note: notes.join(" / "),
+                        isHoliday,
+                        isVDay: VISITING_TUESDAYS.includes(dtStr)
+                    });
+                }
+
+                curr.setDate(curr.getDate() + 1);
+            }
+        }
+
+        function formatDate(d) {
+            let y = d.getFullYear();
+            let m = String(d.getMonth() + 1).padStart(2, '0');
+            let day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
+        }
+
+        function renderMonthSelector() {
+            const months = [
+                { y: 2026, m: 8, label: '8월' },
+                { y: 2026, m: 9, label: '9월' },
+                { y: 2026, m: 10, label: '10월' },
+                { y: 2026, m: 11, label: '11월' },
+                { y: 2026, m: 12, label: '12월' }
+            ];
+
+            const container = document.getElementById('monthSelector');
+            container.innerHTML = months.map(b => {
+                const isActive = (b.y === currentYear && b.m === currentMonth);
+                return `
+                    <button onclick="setMonth(${b.y}, ${b.m})" 
+                        class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${isActive ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                        ${b.label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setMonth(y, m) {
+            currentYear = y;
+            currentMonth = m;
+            renderMonthSelector();
+            renderCalendar();
+        }
+
+        function changeMonth(delta) {
+            const monthList = [
+                { y: 2026, m: 8 }, { y: 2026, m: 9 }, { y: 2026, m: 10 },
+                { y: 2026, m: 11 }, { y: 2026, m: 12 }
+            ];
+            let idx = monthList.findIndex(item => item.y === currentYear && item.m === currentMonth);
+            if (idx !== -1) {
+                let nextIdx = idx + delta;
+                if (nextIdx >= 0 && nextIdx < monthList.length) {
+                    setMonth(monthList[nextIdx].y, monthList[nextIdx].m);
+                }
+            }
+        }
+
+        function filterSchedule() {
+            currentFilter = document.getElementById('gradeFilter').value;
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            document.getElementById('calendarMonthTitle').innerText = `${currentYear}년 ${currentMonth}월`;
+
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay(); // 0:Sun
+            const totalDays = new Date(currentYear, currentMonth, 0).getDate();
+
+            // Render Empty Lead Cells
+            for (let i = 0; i < firstDay; i++) {
+                grid.innerHTML += `<div class="bg-slate-50/50 rounded-xl p-2 h-[185px] border border-dashed border-slate-100"></div>`;
+            }
+
+            // Render Days
+            for (let day = 1; day <= totalDays; day++) {
+                const dtStr = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const dayData = scheduleDB.find(item => item.date === dtStr);
+                const dateObj = new Date(currentYear, currentMonth - 1, day);
+                const dayOfWeek = dateObj.getDay(); // 0:Sun, 6:Sat
+
+                let dayHeaderClass = "text-slate-800 font-bold";
+                if (dayOfWeek === 0) dayHeaderClass = "text-rose-500 font-bold";
+                if (dayOfWeek === 6) dayHeaderClass = "text-blue-500 font-bold";
+
+                let bgClass = "bg-white";
+                let borderClass = "border-slate-200";
+
+                if (dayData) {
+                    if (dayData.isHoliday) {
+                        bgClass = "bg-rose-50/60";
+                        borderClass = "border-rose-200";
+                    } else if (dayData.isVDay) {
+                        bgClass = "bg-indigo-50/60";
+                        borderClass = "border-indigo-300";
+                    }
+                } else if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    bgClass = "bg-slate-50/70";
+                }
+
+                // Check filter match
+                let isMatch = true;
+                if (currentFilter !== 'ALL' && dayData) {
+                    if (currentFilter === 'HOLIDAY') isMatch = dayData.isHoliday;
+                    else if (currentFilter === 'VISITING') isMatch = dayData.isVDay;
+                    else {
+                        const targetG = currentFilter;
+                        isMatch = [dayData.p1, dayData.p2, dayData.p3, dayData.p4, dayData.p5].some(p => p.startsWith(targetG));
+                    }
+                }
+
+                let opacityClass = isMatch ? "opacity-100" : "opacity-30";
+
+                let cellHTML = `
+                    <div onclick="openDayModal('${dtStr}')" 
+                        class="${bgClass} ${borderClass} ${opacityClass} rounded-xl p-2 h-[185px] border flex flex-col justify-between hover:shadow-md transition-all cursor-pointer relative group overflow-hidden">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs ${dayHeaderClass}">${day}</span>
+                                ${dayData && dayData.isVDay ? '<span class="text-[9px] bg-red-600 text-white font-bold px-1 py-0.2 rounded">6학년특강</span>' : ''}
+                                ${dayData && dayData.isHoliday ? `<span class="text-[9px] bg-rose-100 text-rose-700 font-bold px-1.5 py-0.5 rounded truncate max-w-[65px]">${HOLIDAYS[dtStr]}</span>` : ''}
+                            </div>
+                            
+                            <div class="space-y-0.5">
+                                ${renderPeriodChips(dayData)}
+                            </div>
+                        </div>
+
+                        ${dayData && dayData.note ? `
+                            <div class="text-[9px] text-slate-500 truncate pt-1 border-t border-slate-100">
+                                ${dayData.note}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+
+                grid.innerHTML += cellHTML;
+            }
+        }
+
+        function renderPeriodChips(dayData) {
+            if (!dayData) return '';
+            if (dayData.isHoliday) return `<span class="text-[10px] text-rose-500 font-semibold block mt-1">휴무일</span>`;
+            if (dayData.weekdayNum === 3) return `<span class="text-[10px] text-indigo-400 font-medium block mt-1 italic">강사 수업 없음</span>`;
+
+            let hasAny = dayData.p1 || dayData.p2 || dayData.p3 || dayData.p4 || dayData.p5;
+
+            if (!hasAny) {
+                return `<span class="text-[10px] text-slate-400 font-normal block mt-1 italic">수업 없음</span>`;
+            }
+
+            let slots = [];
+            slots.push(dayData.p1 ? makeChip(dayData.p1, '1교시') : makeEmptySlot('1교시'));
+            slots.push(dayData.p2 ? makeChip(dayData.p2, '2교시') : makeEmptySlot('2교시'));
+            slots.push(dayData.p3 ? makeChip(dayData.p3, '3교시') : makeEmptySlot('3교시'));
+            slots.push(dayData.p4 ? makeChip(dayData.p4, '4교시') : makeEmptySlot('4교시'));
+            if (dayData.p5) {
+                slots.push(makeChip(dayData.p5, '5교시'));
+            }
+
+            return slots.join('');
+        }
+
+        function makeChip(clsName, periodText) {
+            let colorClass = "bg-slate-100 text-slate-700";
+            if (clsName.startsWith('1')) colorClass = "bg-rose-600 text-white font-extrabold border border-rose-700 shadow-sm";
+            if (clsName.startsWith('2')) colorClass = "bg-amber-500 text-slate-950 font-extrabold border border-amber-600 shadow-sm";
+            if (clsName.startsWith('3')) colorClass = "bg-emerald-600 text-white font-extrabold border border-emerald-700 shadow-sm";
+            if (clsName.startsWith('4')) colorClass = "bg-cyan-500 text-slate-950 font-extrabold border border-cyan-600 shadow-sm";
+            if (clsName.startsWith('5')) colorClass = "bg-purple-600 text-white font-extrabold border border-purple-700 shadow-sm";
+            // 6학년 테마 색상을 Teal(청록색)으로 적용
+            if (clsName.startsWith('6')) colorClass = "bg-teal-600 text-white font-extrabold border border-teal-700 shadow-sm";
+
+            return `<div class="${colorClass} text-[10px] px-1.5 py-[1px] rounded flex items-center justify-between mb-0.5">
+                <span>${clsName}반</span>
+                <span class="text-[8px] opacity-90 font-medium">${periodText}</span>
+            </div>`;
+        }
+
+        function makeEmptySlot(periodText) {
+            return `<div class="border border-dashed border-slate-200/70 text-[9px] px-1.5 py-[1px] rounded flex items-center justify-between mb-0.5 text-slate-300">
+                <span>-</span>
+                <span class="text-[8px] text-slate-300 font-normal">${periodText}</span>
+            </div>`;
+        }
+
+        function openDayModal(dtStr) {
+            const dayData = scheduleDB.find(item => item.date === dtStr);
+            const dateObj = new Date(dtStr);
+            const y = dateObj.getFullYear();
+            const m = dateObj.getMonth() + 1;
+            const d = dateObj.getDate();
+            const wdKr = ['일', '월', '화', '수', '목', '금', '토'][dateObj.getDay()];
+
+            document.getElementById('modalDateTitle').innerText = `${y}년 ${m}월 ${d}일`;
+            document.getElementById('modalWeekday').innerText = `${wdKr}요일`;
+
+            const body = document.getElementById('modalBody');
+
+            if (!dayData || dayData.isHoliday) {
+                body.innerHTML = `
+                    <div class="text-center py-6">
+                        <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="coffee" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-base">공휴일 및 휴무일</h4>
+                        <p class="text-xs text-slate-500 mt-1">${dayData ? dayData.note : '수업 일정이 없습니다.'}</p>
+                    </div>
+                `;
+            } else {
+                let periods = [
+                    { p: '1교시 (09:00~09:40)', val: dayData.p1 },
+                    { p: '2교시 (09:50~10:30)', val: dayData.p2 },
+                    { p: '3교시 (10:40~11:20)', val: dayData.p3 },
+                    { p: '4교시 (11:30~12:10)', val: dayData.p4 }
+                ];
+
+                let pList = periods.map(item => `
+                    <div class="flex items-center justify-between p-2.5 rounded-xl ${item.val ? 'bg-indigo-50/50 border border-indigo-100' : 'bg-slate-50 border border-slate-100'}">
+                        <span class="text-xs font-semibold text-slate-600">${item.p}</span>
+                        <span class="text-xs font-bold ${item.val ? 'text-indigo-900 bg-white px-2.5 py-1 rounded-md shadow-sm border border-indigo-200' : 'text-slate-400'}">
+                            ${item.val ? `${item.val}반 AI 수업` : '수업 없음'}
+                        </span>
+                    </div>
+                `).join('');
+
+                body.innerHTML = `
+                    <div class="space-y-1.5">
+                        ${pList}
+                    </div>
+                    ${dayData.note ? `
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-900 flex items-start gap-2 mt-2">
+                            <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold block">특이사항 안내</span>
+                                <span>${dayData.note}</span>
+                            </div>
+                        </div>
+                    ` : ''}
+                `;
+            }
+
+            document.getElementById('dayModal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('dayModal').classList.add('hidden');
+        }
+
+        // Export Schedule to CSV
+        function exportToCSV() {
+            let csv = "\uFEFF일자,요일,1교시,2교시,3교시,4교시,비고\n";
+            scheduleDB.forEach(row => {
+                let p1 = row.p1 ? `="${row.p1}반"` : "";
+                let p2 = row.p2 ? `="${row.p2}반"` : "";
+                let p3 = row.p3 ? `="${row.p3}반"` : "";
+                let p4 = row.p4 ? `="${row.p4}반"` : "";
+                csv += `"${row.date}","${row.weekday}",${p1},${p2},${p3},${p4},"${row.note}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `2026_2학기_AI교육_상세운영달력_v3.1.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Initialize Application
+        window.addEventListener('DOMContentLoaded', () => {
+            generateScheduleData();
+            renderMonthSelector();
+            renderCalendar();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
