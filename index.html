@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 3.2)</title>
+    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 3.3)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -50,7 +50,7 @@
                     </div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
                         <i data-lucide="calendar" class="w-8 h-8 text-indigo-400"></i>
-                        AI교육 수업 운영 달력 & 시간표 (ver 3.2)
+                        AI교육 수업 운영 달력 & 시간표 (ver 3.3)
                     </h1>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
@@ -122,7 +122,7 @@
                     </div>
                     <div class="text-[11px] text-slate-700 space-y-0.5 mt-2">
                         <p>• 학급당 할당: <strong class="text-sky-950">20차시</strong> (4-1: 20, 4-2: 20, 4-3: 20)</p>
-                        <p class="text-slate-600 text-[10px]">• 금2~4교시 & 11월/12월 블록 배정</p>
+                        <p class="text-sky-800 text-[10px] font-semibold">• 4-1반 11/26 2차시 ➜ 12/18(2교시), 12/21(4교시) 이월 완료</p>
                     </div>
                 </div>
 
@@ -312,7 +312,7 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-auto py-6 no-print">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>2026학년도 2학기 AI교육 수업 운영 일정 및 시간표 (버전 3.2)</p>
+            <p>2026학년도 2학기 AI교육 수업 운영 일정 및 시간표 (버전 3.3)</p>
         </div>
     </footer>
 
@@ -353,7 +353,8 @@
                 '6-1': 16, '6-2': 16, '6-3': 16
             };
 
-            const NOV_BLOCK_THUS = ["2026-11-05", "2026-11-12", "2026-11-19", "2026-11-26", "2026-12-03"];
+            // 11/26은 4-1 연차시 취소에 따라 개별 처리하기 위해 목록에서 제외
+            const NOV_BLOCK_THUS = ["2026-11-05", "2026-11-12", "2026-11-19", "2026-12-03"];
             const NOV_BLOCK_FRIS = ["2026-11-06", "2026-11-13", "2026-11-20", "2026-12-04"];
 
             let curr = new Date(startDate);
@@ -382,7 +383,6 @@
                                 if (rem['5-2'] > 0) { p4 = "5-2"; rem['5-2'] -= 1; }
                                 notes.push("5학년 수업 이월 배정");
                             } else if (dtStr === "2026-10-12") {
-                                // 10/12 Mon: 1-2 (p1), 2-2 (p2), 2-1 (p3), 3-2 (p4)
                                 if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
                                 if (rem['2-2'] > 0) { p2 = "2-2"; rem['2-2'] -= 1; }
                                 if (rem['2-1'] > 0) { p3 = "2-1"; rem['2-1'] -= 1; }
@@ -398,6 +398,13 @@
                                 if (rem['6-2'] > 0) { p3 = "6-2"; rem['6-2'] -= 1; }
                                 if (rem['6-2'] > 0) { p4 = "6-2"; rem['6-2'] -= 1; }
                                 notes.push("6-1반(1~2교시), 6-2반(3~4교시) 블록 수업 배정");
+                            } else if (dtStr === "2026-12-21") {
+                                // 12/21(월): 4-1반 11/26 이월분 4교시 배정
+                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
+                                if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
+                                if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
+                                if (rem['4-1'] > 0) { p4 = "4-1"; rem['4-1'] -= 1; }
+                                notes.push("4-1반 11/26 이월 수업 배정 (4교시)");
                             } else if (dtStr === "2026-12-28") {
                                 notes.push("4학년 수업 12/29(화) 이동 배정");
                             } else if (dtStr === "2026-09-21") {
@@ -452,8 +459,12 @@
                         } 
                         // Thursday
                         else if (wd === 4) {
-                            if (dtStr === "2026-10-22") {
-                                // 10/22(목): 1~2교시 5-3, 3교시 1-1, 4교시 3-1
+                            if (dtStr === "2026-11-26") {
+                                // 11/26(목): 4-1 연차시 취소 및 12월 분산 이월, 5-3반만 3~4교시 배정
+                                if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
+                                if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("4-1반 연차시 이월 (12/18 2교시, 12/21 4교시 분산 배치) / 5-3반 3~4교시 배정");
+                            } else if (dtStr === "2026-10-22") {
                                 if (rem['5-3'] > 0) { p1 = "5-3"; rem['5-3'] -= 1; }
                                 if (rem['5-3'] > 0) { p2 = "5-3"; rem['5-3'] -= 1; }
                                 if (rem['1-1'] > 0) { p3 = "1-1"; rem['1-1'] -= 1; }
@@ -521,7 +532,13 @@
                         } 
                         // Friday
                         else if (wd === 5) {
-                            if (dtStr === "2026-12-11") {
+                            if (dtStr === "2026-12-18") {
+                                // 12/18(금): 4-1반 11/26 이월분 2교시 배정
+                                if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
+                                if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
+                                if (rem['4-3'] > 0) { p4 = "4-3"; rem['4-3'] -= 1; }
+                                notes.push("4-1반 11/26 이월 수업 배정 (2교시)");
+                            } else if (dtStr === "2026-12-11") {
                                 if (rem['1-2'] > 0) { p1 = "1-2"; rem['1-2'] -= 1; }
                                 if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
                                 if (rem['4-2'] > 0) { p3 = "4-2"; rem['4-2'] -= 1; }
@@ -757,7 +774,6 @@
             if (clsName.startsWith('3')) colorClass = "bg-emerald-600 text-white font-extrabold border border-emerald-700 shadow-sm";
             if (clsName.startsWith('4')) colorClass = "bg-sky-500 text-slate-950 font-extrabold border border-sky-600 shadow-sm";
             if (clsName.startsWith('5')) colorClass = "bg-purple-600 text-white font-extrabold border border-purple-700 shadow-sm";
-            // 6학년 테마 색상을 5학년(보라)과 명확히 구분되도록 남색(Indigo-800) 적용
             if (clsName.startsWith('6')) colorClass = "bg-indigo-800 text-white font-extrabold border border-indigo-900 shadow-sm";
 
             return `<div class="${colorClass} text-[10px] px-1.5 py-[1px] rounded flex items-center justify-between mb-0.5">
@@ -851,7 +867,7 @@
             const link = document.createElement("a");
             const url = URL.createObjectURL(blob);
             link.setAttribute("href", url);
-            link.setAttribute("download", `2026_2학기_AI교육_상세운영달력_v3.2.csv`);
+            link.setAttribute("download", `2026_2학기_AI교육_상세운영달력_v3.3.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
