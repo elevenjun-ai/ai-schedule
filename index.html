@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 4.2)</title>
+    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 4.3)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -50,7 +50,7 @@
                     </div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-2">
                         <i data-lucide="calendar" class="w-8 h-8 text-indigo-500"></i>
-                        AI교육 수업 운영 달력 & 시간표 (ver 4.2)
+                        AI교육 수업 운영 달력 & 시간표 (ver 4.3)
                     </h1>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
@@ -329,9 +329,9 @@
                 </button>
             </div>
             <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-700">
-                <!-- ver 4.2 -->
+                <!-- ver 4.3 -->
                 <div class="border-l-2 border-indigo-500 pl-3">
-                    <h4 class="font-bold text-indigo-700">ver 4.2 <span class="text-[10px] font-normal text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 ml-1">현재 버전</span></h4>
+                    <h4 class="font-bold text-indigo-700">ver 4.3 <span class="text-[10px] font-normal text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 ml-1">현재 버전</span></h4>
                     <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-slate-700">
                         <li><span class="font-semibold text-rose-600">자바스크립트 중복 선언 오류 해결</span> (달력 정상 렌더링 완벽 복구)</li>
                         <li>전체 페이지 파스텔 톤 UI/UX 디자인 전면 개편 (헤더, 달력, 카드, 뱃지)</li>
@@ -382,7 +382,7 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-auto py-6 no-print">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 4.2)</p>
+            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 4.3)</p>
         </div>
     </footer>
 
@@ -449,7 +449,14 @@
                     if (isHoliday) {
                         notes.push(`공휴일 (${HOLIDAYS[dtStr]})`);
                     } else if (wd === 3) {
-                        notes.push("수요일 (강사 수업 없음)");
+                        if (dtStr === "2026-11-25") {
+                            if (rem['6-3'] > 0) { p1 = "6-3"; rem['6-3'] -= 1; }
+                            if (rem['6-1'] > 0) { p2 = "6-1"; rem['6-1'] -= 1; }
+                            if (rem['6-2'] > 0) { p3 = "6-2"; rem['6-2'] -= 1; }
+                            notes.push("11/23(월) 6학년 수업 이동 배정 완료");
+                        } else {
+                            notes.push("수요일 (강사 수업 없음)");
+                        }
                     } else {
                         // Monday
                         if (wd === 1) {
@@ -480,10 +487,7 @@
                                 if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
                                 if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
                             } else if (dtStr === "2026-11-23") {
-                                if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
-                                if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
-                                if (rem['6-3'] > 0) { p3 = "6-3"; rem['6-3'] -= 1; }
-                                if (rem['1-1'] > 0) { p4 = "1-1"; rem['1-1'] -= 1; }
+                                notes.push("11/23(월) 수업 전체 이동 배정 완료 (11/25, 11/26)");
                             } else if (dtStr === "2026-11-02") {
                                 if (rem['6-1'] > 0) { p1 = "6-1"; rem['6-1'] -= 1; }
                                 if (rem['6-2'] > 0) { p2 = "6-2"; rem['6-2'] -= 1; }
@@ -538,8 +542,10 @@
                                 if (rem['1-1'] > 0) { p3 = "1-1"; rem['1-1'] -= 1; }
                                 if (rem['3-1'] > 0) { p4 = "3-1"; rem['3-1'] -= 1; }
                             } else if (dtStr === "2026-11-26") {
+                                if (rem['1-1'] > 0) { p2 = "1-1"; rem['1-1'] -= 1; }
                                 if (rem['5-3'] > 0) { p3 = "5-3"; rem['5-3'] -= 1; }
                                 if (rem['5-3'] > 0) { p4 = "5-3"; rem['5-3'] -= 1; }
+                                notes.push("11/23(월) 1-1반 수업 이동 배정 완료");
                             } else if (NOV_BLOCK_THUS.includes(dtStr)) {
                                 if (rem['4-1'] > 0) { p1 = "4-1"; rem['4-1'] -= 1; }
                                 if (rem['4-1'] > 0) { p2 = "4-1"; rem['4-1'] -= 1; }
@@ -814,9 +820,9 @@
         function renderPeriodChips(dayData) {
             if (!dayData) return '';
             if (dayData.isHoliday) return `<span class="text-[10px] text-rose-500 font-semibold block mt-1">휴무일</span>`;
-            if (dayData.weekdayNum === 3) return `<span class="text-[10px] text-indigo-400 font-medium block mt-1 italic">강사 수업 없음</span>`;
-
             let hasAny = dayData.p1 || dayData.p2 || dayData.p3 || dayData.p4 || dayData.p5;
+            
+            if (dayData.weekdayNum === 3 && !hasAny) return `<span class="text-[10px] text-indigo-400 font-medium block mt-1 italic">강사 수업 없음</span>`;
 
             if (!hasAny) {
                 return `<span class="text-[10px] text-slate-400 font-normal block mt-1 italic">수업 없음</span>`;
