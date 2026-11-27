@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 4.3)</title>
+    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 4.4)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -50,7 +50,7 @@
                     </div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-2">
                         <i data-lucide="calendar" class="w-8 h-8 text-indigo-500"></i>
-                        AI교육 수업 운영 달력 & 시간표 (ver 4.3)
+                        AI교육 수업 운영 달력 & 시간표 (ver 4.4)
                     </h1>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
@@ -75,18 +75,18 @@
                     <i data-lucide="check-circle-2" class="w-5 h-5 text-indigo-500 shrink-0"></i>
                     학년별 및 학급별 총 수업차시 현황 
                 </h2>
-                <span class="text-xs text-slate-500 font-medium">2026. 08. 24. ~ 12. 31. 기준</span>
+                <span class="text-xs text-slate-500 font-medium">2026. 08. 24. ~ 2027. 01. 07. 기준</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 <!-- 1학년 -->
                 <div class="bg-pink-50/70 p-3.5 rounded-xl border border-pink-200/80 shadow-sm">
                     <div class="flex justify-between items-center text-xs font-bold text-pink-900 mb-1">
                         <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-pink-400 inline-block"></span>1학년 (2개반)</span>
-                        <span class="text-pink-800 bg-white/90 px-2 py-0.5 rounded border border-pink-200 font-extrabold">총 12차시</span>
+                        <span class="text-pink-800 bg-white/90 px-2 py-0.5 rounded border border-pink-200 font-extrabold" data-grade-total="1" data-base-hours="12">총 12차시</span>
                     </div>
                     <div class="text-[11px] text-slate-600 space-y-0.5 mt-2">
-                        <p>• 학급당 할당: <strong class="text-slate-800">6차시</strong> (1-1: 6, 1-2: 6)</p>
-                        <p class="text-slate-500 text-[10px]">• 10월 3주~12월 4주 순차 완수 진행</p>
+                        <p>• 기존 학급별 배정: <strong class="text-slate-800">6차시</strong> (1-1: 6, 1-2: 6)</p>
+                        <p class="text-slate-500 text-[10px]" data-grade-extras="1"></p>
                     </div>
                 </div>
 
@@ -94,11 +94,11 @@
                 <div class="bg-amber-50/70 p-3.5 rounded-xl border border-amber-200/80 shadow-sm">
                     <div class="flex justify-between items-center text-xs font-bold text-amber-900 mb-1">
                         <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>2학년 (2개반)</span>
-                        <span class="text-amber-800 bg-white/90 px-2 py-0.5 rounded border border-amber-200 font-extrabold">총 12차시</span>
+                        <span class="text-amber-800 bg-white/90 px-2 py-0.5 rounded border border-amber-200 font-extrabold" data-grade-total="2" data-base-hours="12">총 12차시</span>
                     </div>
                     <div class="text-[11px] text-slate-600 space-y-0.5 mt-2">
-                        <p>• 학급당 할당: <strong class="text-slate-800">6차시</strong> (2-1: 6, 2-2: 6)</p>
-                        <p class="text-slate-500 text-[10px]">• 9월 1주~10월 2주 조정 배정 완수 완료</p>
+                        <p>• 기존 학급별 배정: <strong class="text-slate-800">6차시</strong> (2-1: 6, 2-2: 6)</p>
+                        <p class="text-slate-500 text-[10px]" data-grade-extras="2"></p>
                     </div>
                 </div>
 
@@ -106,11 +106,11 @@
                 <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-200/80 shadow-sm">
                     <div class="flex justify-between items-center text-xs font-bold text-emerald-900 mb-1">
                         <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>3학년 (2개반)</span>
-                        <span class="text-emerald-800 bg-white/90 px-2 py-0.5 rounded border border-emerald-200 font-extrabold">총 18차시</span>
+                        <span class="text-emerald-800 bg-white/90 px-2 py-0.5 rounded border border-emerald-200 font-extrabold" data-grade-total="3" data-base-hours="18">총 18차시</span>
                     </div>
                     <div class="text-[11px] text-slate-600 space-y-0.5 mt-2">
-                        <p>• 학급당 할당: <strong class="text-slate-800">9차시</strong> (3-1: 9, 3-2: 9)</p>
-                        <p class="text-slate-500 text-[10px]">• 9/22 보완 배정 반영 (동일 주 완수)</p>
+                        <p>• 기존 학급별 배정: <strong class="text-slate-800">9차시</strong> (3-1: 9, 3-2: 9)</p>
+                        <p class="text-slate-500 text-[10px]" data-grade-extras="3"></p>
                     </div>
                 </div>
 
@@ -201,6 +201,8 @@
                 </div>
             </div>
 
+            <p class="px-4 sm:px-6 pt-3 text-xs text-slate-600">학급별 추가수업은 달력에 ‘추가수업’으로 표시됩니다.</p>
+
             <!-- Calendar Grid Container -->
             <div class="p-3 sm:p-6 overflow-x-auto">
                 <div class="min-w-[720px] sm:min-w-0">
@@ -209,7 +211,7 @@
                         <span class="text-rose-500">일</span>
                         <span>월</span>
                         <span>화</span>
-                        <span class="text-indigo-600">수 (자율/휴무)</span>
+                        <span class="text-indigo-600">수</span>
                         <span>목</span>
                         <span>금</span>
                         <span class="text-blue-500">토</span>
@@ -248,7 +250,7 @@
                             <td class="p-3 font-semibold bg-slate-50 text-slate-600">1교시 (09:00~09:40)</td>
                             <td class="p-3 bg-teal-50/80 text-teal-900 font-semibold border-2 border-teal-200">6학년 1반</td>
                             <td class="p-3 bg-purple-50/80 text-purple-900 font-semibold border-2 border-purple-200">5학년 1반 (1/2)</td>
-                            <td class="p-3 bg-indigo-50/50 text-slate-400 italic" rowspan="5">강사 수업 없음<br>(자체 수업 활용)</td>
+                            <td class="p-3 bg-indigo-50/50 text-slate-500" rowspan="5">기본 배정 없음<br>추가수업은 날짜별 달력 참조</td>
                             <td class="p-3 bg-amber-50/80 text-amber-900 font-semibold border-2 border-amber-200">2-1반 / 1-1반 (선행/자율)</td>
                             <td class="p-3 bg-amber-50/80 text-amber-900 font-semibold border-2 border-amber-200">2-2반 / 1-2반 (선행/자율)</td>
                         </tr>
@@ -329,9 +331,17 @@
                 </button>
             </div>
             <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-700">
-                <!-- ver 4.3 -->
+                <!-- ver 4.4 -->
                 <div class="border-l-2 border-indigo-500 pl-3">
-                    <h4 class="font-bold text-indigo-700">ver 4.3 <span class="text-[10px] font-normal text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 ml-1">현재 버전</span></h4>
+                    <h4 class="font-bold text-indigo-700">ver 4.4 <span class="text-[10px] font-normal text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 ml-1">현재 버전</span></h4>
+                    <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-slate-700">
+                        <li>12월·1월 1~3학년 추가수업 24차시를 학급별로 배정</li>
+                        <li>2027년 1월 달력과 상세 일정, CSV 다운로드에 추가수업 반영</li>
+                    </ul>
+                </div>
+                <!-- ver 4.3 -->
+                <div class="border-l-2 border-slate-300 pl-3">
+                    <h4 class="font-bold text-slate-800">ver 4.3</h4>
                     <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-slate-700">
                         <li><span class="font-semibold text-rose-600">자바스크립트 중복 선언 오류 해결</span> (달력 정상 렌더링 완벽 복구)</li>
                         <li>전체 페이지 파스텔 톤 UI/UX 디자인 전면 개편 (헤더, 달력, 카드, 뱃지)</li>
@@ -382,7 +392,7 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-auto py-6 no-print">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 4.3)</p>
+            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 4.4)</p>
         </div>
     </footer>
 
@@ -394,23 +404,39 @@
             "2026-09-25": "추석",
             "2026-10-05": "개천절 대체공휴일",
             "2026-10-09": "한글날",
-            "2026-12-25": "성탄절"
+            "2026-12-25": "성탄절",
+            "2027-01-01": "신정"
         };
 
         // 6th Grade Visiting Instructor Special Tuesdays
         const VISITING_TUESDAYS = ["2026-09-22", "2026-09-29", "2026-10-06", "2026-10-13"];
 
-        // Current view state (Smart current month detection)
-        let _today = new Date();
-        let currentYear = 2026;
-        let currentMonth = 8;
-        if (_today.getFullYear() === 2026 && _today.getMonth() >= 7 && _today.getMonth() <= 11) {
-            currentMonth = _today.getMonth() + 1;
-        } else if (_today.getFullYear() === 2026 && _today.getMonth() < 7) {
-            currentMonth = 8;
-        } else {
-            currentMonth = 10; // Oct 2026 context default
-        }
+        const ADDITIONAL_LESSONS = {
+            "2026-12-02": { 2: "2-1", 3: "2-2" },
+            "2026-12-16": { 2: "2-1", 3: "2-2" },
+            "2026-12-22": { 1: "1-1", 2: "1-2" },
+            "2026-12-23": { 1: "1-1", 2: "1-2" },
+            "2026-12-28": { 1: "1-1", 2: "1-2", 3: "2-1", 4: "2-2" },
+            "2026-12-29": { 1: "1-1", 2: "1-2", 3: "2-1", 4: "2-2" },
+            "2026-12-30": { 2: "3-2", 3: "3-1" },
+            "2026-12-31": { 1: "2-1", 4: "2-2" },
+            "2027-01-04": { 2: "2-1", 3: "2-2" },
+            "2027-01-05": { 1: "1-1", 2: "1-2" }
+        };
+
+        const MONTHS = [
+            { y: 2026, m: 8, label: '8월' },
+            { y: 2026, m: 9, label: '9월' },
+            { y: 2026, m: 10, label: '10월' },
+            { y: 2026, m: 11, label: '11월' },
+            { y: 2026, m: 12, label: '12월' },
+            { y: 2027, m: 1, label: '2027년 1월' }
+        ];
+        const today = new Date();
+        const openingMonth = MONTHS.find(({ y, m }) => y === today.getFullYear() && m === today.getMonth() + 1)
+            ?? (today < new Date(2026, 7, 1) ? MONTHS[0] : MONTHS[MONTHS.length - 1]);
+        let currentYear = openingMonth.y;
+        let currentMonth = openingMonth.m;
         let currentFilter = 'ALL';
 
         // Schedule Database Container
@@ -420,7 +446,7 @@
             scheduleDB = [];
 
             const startDate = new Date(2026, 7, 24); // Aug 24, 2026
-            const endDate = new Date(2026, 11, 31);   // Dec 31, 2026
+            const endDate = new Date(2027, 0, 7);    // Jan 7, 2027
 
             let rem = {
                 '1-1': 6, '1-2': 6,
@@ -448,6 +474,8 @@
 
                     if (isHoliday) {
                         notes.push(`공휴일 (${HOLIDAYS[dtStr]})`);
+                    } else if (dtStr >= "2027-01-01") {
+                        if (dtStr === "2027-01-07") notes.push("종업식 및 졸업식");
                     } else if (wd === 3) {
                         if (dtStr === "2026-11-25") {
                             if (rem['6-3'] > 0) { p1 = "6-3"; rem['6-3'] -= 1; }
@@ -665,6 +693,20 @@
                         }
                     }
 
+                    const periods = { p1, p2, p3, p4, p5 };
+                    const additional = ADDITIONAL_LESSONS[dtStr];
+                    if (additional) {
+                        for (const [period, className] of Object.entries(additional)) {
+                            const field = `p${period}`;
+                            if (periods[field] || isHoliday) {
+                                throw new Error(`추가수업 시간 중복: ${dtStr} ${period}교시`);
+                            }
+                            periods[field] = className;
+                        }
+                        notes = notes.filter(note => note !== "수요일 (강사 수업 없음)");
+                        notes.push("추가수업");
+                    }
+
                     scheduleDB.push({
                         date: dtStr,
                         year: curr.getFullYear(),
@@ -672,7 +714,7 @@
                         day: curr.getDate(),
                         weekday: wdKr,
                         weekdayNum: wd,
-                        p1, p2, p3, p4, p5,
+                        ...periods,
                         note: notes.join(" / "),
                         isHoliday,
                         isVDay: VISITING_TUESDAYS.includes(dtStr)
@@ -690,17 +732,29 @@
             return `${y}-${m}-${day}`;
         }
 
-        function renderMonthSelector() {
-            const months = [
-                { y: 2026, m: 8, label: '8월' },
-                { y: 2026, m: 9, label: '9월' },
-                { y: 2026, m: 10, label: '10월' },
-                { y: 2026, m: 11, label: '11월' },
-                { y: 2026, m: 12, label: '12월' }
-            ];
+        function renderAdditionalTotals() {
+            const countsByClass = {};
+            for (const periods of Object.values(ADDITIONAL_LESSONS)) {
+                for (const className of Object.values(periods)) {
+                    countsByClass[className] = (countsByClass[className] || 0) + 1;
+                }
+            }
+            for (const element of document.querySelectorAll('[data-grade-total]')) {
+                const grade = element.dataset.gradeTotal;
+                const additional = (countsByClass[`${grade}-1`] || 0) + (countsByClass[`${grade}-2`] || 0);
+                element.textContent = `총 ${Number(element.dataset.baseHours) + additional}차시`;
+            }
+            for (const element of document.querySelectorAll('[data-grade-extras]')) {
+                const grade = element.dataset.gradeExtras;
+                const classOne = countsByClass[`${grade}-1`] || 0;
+                const classTwo = countsByClass[`${grade}-2`] || 0;
+                element.textContent = `• 추가수업 ${classOne + classTwo}차시 (${grade}-1: ${classOne}, ${grade}-2: ${classTwo})`;
+            }
+        }
 
+        function renderMonthSelector() {
             const container = document.getElementById('monthSelector');
-            container.innerHTML = months.map(b => {
+            container.innerHTML = MONTHS.map(b => {
                 const isActive = (b.y === currentYear && b.m === currentMonth);
                 return `
                     <button onclick="setMonth(${b.y}, ${b.m})" 
@@ -719,17 +773,9 @@
         }
 
         function changeMonth(delta) {
-            const monthList = [
-                { y: 2026, m: 8 }, { y: 2026, m: 9 }, { y: 2026, m: 10 },
-                { y: 2026, m: 11 }, { y: 2026, m: 12 }
-            ];
-            let idx = monthList.findIndex(item => item.y === currentYear && item.m === currentMonth);
-            if (idx !== -1) {
-                let nextIdx = idx + delta;
-                if (nextIdx >= 0 && nextIdx < monthList.length) {
-                    setMonth(monthList[nextIdx].y, monthList[nextIdx].m);
-                }
-            }
+            const index = MONTHS.findIndex(item => item.y === currentYear && item.m === currentMonth);
+            const next = index === -1 ? null : MONTHS[index + delta];
+            if (next) setMonth(next.y, next.m);
         }
 
         function filterSchedule() {
@@ -828,19 +874,18 @@
                 return `<span class="text-[10px] text-slate-400 font-normal block mt-1 italic">수업 없음</span>`;
             }
 
-            let slots = [];
-            slots.push(dayData.p1 ? makeChip(dayData.p1, '1교시') : makeEmptySlot('1교시'));
-            slots.push(dayData.p2 ? makeChip(dayData.p2, '2교시') : makeEmptySlot('2교시'));
-            slots.push(dayData.p3 ? makeChip(dayData.p3, '3교시') : makeEmptySlot('3교시'));
-            slots.push(dayData.p4 ? makeChip(dayData.p4, '4교시') : makeEmptySlot('4교시'));
+            const slots = [1, 2, 3, 4].map(period =>
+                dayData[`p${period}`] ? makeChip(dayData, period) : makeEmptySlot(`${period}교시`)
+            );
             if (dayData.p5) {
-                slots.push(makeChip(dayData.p5, '5교시'));
+                slots.push(makeChip(dayData, 5));
             }
 
             return slots.join('');
         }
 
-        function makeChip(clsName, periodText) {
+        function makeChip(dayData, period) {
+            const clsName = dayData[`p${period}`];
             let colorClass = "bg-slate-100 text-slate-700";
             if (clsName.startsWith('1')) colorClass = "bg-pink-100 text-pink-800 font-bold border border-pink-200 shadow-sm";
             if (clsName.startsWith('2')) colorClass = "bg-amber-100 text-amber-800 font-bold border border-amber-200 shadow-sm";
@@ -850,9 +895,15 @@
             if (clsName.startsWith('6')) colorClass = "bg-teal-100 text-teal-800 font-bold border border-teal-200 shadow-sm";
 
             return `<div class="${colorClass} text-[10px] px-1.5 py-[1px] rounded flex items-center justify-between mb-0.5">
-                <span>${clsName}반</span>
-                <span class="text-[8px] opacity-80 font-normal">${periodText}</span>
+                <span>${formatLessonLabel(dayData, period)}</span>
+                <span class="text-[8px] opacity-80 font-normal">${period}교시</span>
             </div>`;
+        }
+
+        function formatLessonLabel(dayData, period, regularSuffix = '') {
+            const lesson = dayData[`p${period}`];
+            const suffix = ADDITIONAL_LESSONS[dayData.date]?.[period] ? ' 추가수업' : regularSuffix;
+            return lesson ? `${lesson}반${suffix}` : '';
         }
 
         function makeEmptySlot(periodText) {
@@ -864,10 +915,8 @@
 
         function openDayModal(dtStr) {
             const dayData = scheduleDB.find(item => item.date === dtStr);
-            const dateObj = new Date(dtStr);
-            const y = dateObj.getFullYear();
-            const m = dateObj.getMonth() + 1;
-            const d = dateObj.getDate();
+            const [y, m, d] = dtStr.split('-').map(Number);
+            const dateObj = new Date(y, m - 1, d);
             const wdKr = ['일', '월', '화', '수', '목', '금', '토'][dateObj.getDay()];
 
             document.getElementById('modalDateTitle').innerText = `${y}년 ${m}월 ${d}일`;
@@ -893,11 +942,11 @@
                     { p: '4교시 (11:30~12:10)', val: dayData.p4 }
                 ];
 
-                let pList = periods.map(item => `
+                let pList = periods.map((item, index) => `
                     <div class="flex items-center justify-between p-2.5 rounded-xl ${item.val ? 'bg-indigo-50/50 border border-indigo-100' : 'bg-slate-50 border border-slate-100'}">
                         <span class="text-xs font-semibold text-slate-600">${item.p}</span>
                         <span class="text-xs font-bold ${item.val ? 'text-indigo-900 bg-white px-2.5 py-1 rounded-md shadow-sm border border-indigo-200' : 'text-slate-400'}">
-                            ${item.val ? `${item.val}반 AI 수업` : '수업 없음'}
+                            ${item.val ? formatLessonLabel(dayData, index + 1, ' AI 수업') : '수업 없음'}
                         </span>
                     </div>
                 `).join('');
@@ -919,7 +968,7 @@
             }
 
             document.getElementById('dayModal').classList.remove('hidden');
-            lucide.createIcons();
+            window.lucide?.createIcons();
         }
 
         function closeModal() {
@@ -928,7 +977,7 @@
 
         function openVersionModal() {
             document.getElementById('versionModal').classList.remove('hidden');
-            lucide.createIcons();
+            window.lucide?.createIcons();
         }
 
         function closeVersionModal() {
@@ -939,10 +988,10 @@
         function exportToCSV() {
             let csv = "\uFEFF일자,요일,1교시,2교시,3교시,4교시,비고\n";
             scheduleDB.forEach(row => {
-                let p1 = row.p1 ? `="${row.p1}반"` : "";
-                let p2 = row.p2 ? `="${row.p2}반"` : "";
-                let p3 = row.p3 ? `="${row.p3}반"` : "";
-                let p4 = row.p4 ? `="${row.p4}반"` : "";
+                const [p1, p2, p3, p4] = [1, 2, 3, 4].map(period => {
+                    const label = formatLessonLabel(row, period);
+                    return label ? `="${label}"` : "";
+                });
                 csv += `"${row.date}","${row.weekday}",${p1},${p2},${p3},${p4},"${row.note}"\n`;
             });
 
@@ -959,9 +1008,10 @@
         // Initialize Application
         window.addEventListener('DOMContentLoaded', () => {
             generateScheduleData();
+            renderAdditionalTotals();
             renderMonthSelector();
             renderCalendar();
-            lucide.createIcons();
+            window.lucide?.createIcons();
         });
     </script>
 </body>
