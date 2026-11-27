@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 4.4)</title>
+    <title>2학기 AI교육 수업 운영 달력 및 시간표 (ver 4.5)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -50,7 +50,7 @@
                     </div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-2">
                         <i data-lucide="calendar" class="w-8 h-8 text-indigo-500"></i>
-                        AI교육 수업 운영 달력 & 시간표 (ver 4.4)
+                        AI교육 수업 운영 달력 & 시간표 (ver 4.5)
                     </h1>
                 </div>
                 <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
@@ -331,9 +331,17 @@
                 </button>
             </div>
             <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-700">
-                <!-- ver 4.4 -->
+                <!-- ver 4.5 -->
                 <div class="border-l-2 border-indigo-500 pl-3">
-                    <h4 class="font-bold text-indigo-700">ver 4.4 <span class="text-[10px] font-normal text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 ml-1">현재 버전</span></h4>
+                    <h4 class="font-bold text-indigo-700">ver 4.5 <span class="text-[10px] font-normal text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200 ml-1">현재 버전</span></h4>
+                    <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-slate-700">
+                        <li>12월 30일 1~2교시 3-2반, 3~4교시 3-1반으로 조정</li>
+                        <li>12월 31일 2학년 추가수업 취소</li>
+                    </ul>
+                </div>
+                <!-- ver 4.4 -->
+                <div class="border-l-2 border-slate-300 pl-3">
+                    <h4 class="font-bold text-slate-800">ver 4.4</h4>
                     <ul class="list-disc list-inside mt-1.5 space-y-1 text-xs text-slate-700">
                         <li>12월·1월 1~3학년 추가수업 24차시를 학급별로 배정</li>
                         <li>2027년 1월 달력과 상세 일정, CSV 다운로드에 추가수업 반영</li>
@@ -392,7 +400,7 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-auto py-6 no-print">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 4.4)</p>
+            <p>2026학년도 2학기 AI교육 수업 운영 달력 및 시간표 (버전 4.5)</p>
         </div>
     </footer>
 
@@ -418,8 +426,7 @@
             "2026-12-23": { 1: "1-1", 2: "1-2" },
             "2026-12-28": { 1: "1-1", 2: "1-2", 3: "2-1", 4: "2-2" },
             "2026-12-29": { 1: "1-1", 2: "1-2", 3: "2-1", 4: "2-2" },
-            "2026-12-30": { 2: "3-2", 3: "3-1" },
-            "2026-12-31": { 1: "2-1", 4: "2-2" },
+            "2026-12-30": { 1: "3-2", 2: "3-2", 3: "3-1", 4: "3-1" },
             "2027-01-04": { 2: "2-1", 3: "2-2" },
             "2027-01-05": { 1: "1-1", 2: "1-2" }
         };
@@ -706,6 +713,7 @@
                         notes = notes.filter(note => note !== "수요일 (강사 수업 없음)");
                         notes.push("추가수업");
                     }
+                    if (dtStr === "2026-12-31") notes.push("2학년 추가수업 1·4교시 취소");
 
                     scheduleDB.push({
                         date: dtStr,
